@@ -1,0 +1,85 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    background-color: bisque;
+}
+.container.dark{
+    background: #6b6969;
+}
+.btn.dark{
+    background: #424242;
+    color: #fff;
+    border: 1px solid #fff;
+}
+.div{
+    text-align: center;
+    margin-top: 30px;
+    direction: rtl;
+}
+.container{
+    background-color: rgb(255, 174, 117);
+    text-align: center;
+    direction: rtl;
+    width: 500px;
+    height: 600px;
+    border-radius: 15px;
+    margin: 5px auto;
+}
+#label{
+    font-size: 18px;
+}
+::placeholder{
+    color: white;
+}
+select{
+    font-size: 18px;
+    border-radius: 5px;
+}
+.display > input[type=text]{
+    border: 0px;
+    background-color: rgb(230, 34, 34);
+    width: 100%;
+    direction: ltr;
+    height: 80px;
+    font-size: 45px;
+    font-weight: bolder;
+    border-radius: 15px;
+
+}
+.row{
+    direction: ltr;
+    margin-bottom: 20px;
+}
+.wid{
+    border: 0px;
+    width: 200px !important;
+    height: 50px !important;
+    margin: 10px 10px !important;
+    font-size: 40px !important;
+    font-weight: bold !important;
+    border-radius: 10px !important;
+    cursor: pointer;
+}
+.btn{
+    border: 0px;
+    width: 80px;
+    height: 80px;
+    margin-top: 7px;
+    border-radius: 100%;
+    margin-right: 20px;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.red{
+    background-color: red !important;
+}
+.red.dark{
+    border:1px solid #FF0509;
+}
+.oper{
+    background-color: rgb(248, 76, 13) !important;
+}
