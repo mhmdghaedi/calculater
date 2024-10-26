@@ -7,57 +7,66 @@
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
+    <!-- Dark Mode Selection -->
     <div class="div">
-        <label id="label" for="dark-mode"> حالت نمایش  </label>
-        <select name="" id="dark-mode">
+        <label id="label" for="dark-mode">حالت نمایش</label>
+        <select id="dark-mode" aria-label="Display Mode">
             <option value="light">روشن</option>
-        <option value="dark">تیره</option>
-   
+            <option value="dark">تیره</option>
         </select>
     </div>
-    <div class="container">
-       
-     
 
-            <form action="" id="calculator">
-                <div class="display">
-                    <input type="text" name="result" id="result" placeholder="0">
+    <!-- Calculator Container -->
+    <div class="container" role="main" aria-labelledby="calculator-title">
+        <h1 id="calculator-title">Scientific Calculator</h1>
+
+        <!-- Calculator Form -->
+        <form id="calculator" action="">
+            <!-- Display Screen -->
+            <div class="display">
+                <input type="text" id="result" name="result" placeholder="0" readonly aria-live="polite">
+            </div>
+
+            <!-- Button Groups for Calculator Functions -->
+            <div class="buttons">
+                <!-- Scientific Functions Row -->
+                <div class="row" aria-label="Scientific Functions">
+                    <input type="button" class="btn oper" value="√" onclick="oprClicked('root')" aria-label="Square Root">
+                    <input type="button" class="btn oper" value="sin" onclick="oprClicked('sin')" aria-label="Sine">
+                    <input type="button" class="btn oper" value="cos" onclick="oprClicked('cos')" aria-label="Cosine">
+                    <input type="button" class="btn oper" value="tan" onclick="oprClicked('tan')" aria-label="Tangent">
                 </div>
-                <div class="buttons">
-                    <div class="row">
-                        <input type="button" class="btn oper" name="root" value="root" onclick="oprClicked('root')">
-                        <input type="button" class="btn oper" name="sin" value="sin" onclick="oprClicked('sin')">
-                        <input type="button" class="btn oper" name="cos" value="cos" onclick="oprClicked('cos')">
-                        <input type="button" class="btn oper" name="tan" value="tan" onclick="oprClicked('tan')">
-                    </div>
-                    <div class="row">
-                        <input type="button" class="btn" name="b7" value="7" onclick="numberClicked('7')">
-                        <input type="button" class="btn" name="b8" value="8" onclick="numberClicked('8')">
-                        <input type="button" class="btn" name="b9" value="9" onclick="numberClicked('9')">
-                        <input type="button" class="btn oper" name="+" value="+" onclick="oprClicked('+')">
-                    </div>
-                    <div class="row">
-                        <input type="button" class="btn" name="b4" value="4" onclick="numberClicked('4')">
-                        <input type="button" class="btn" name="b5" value="5" onclick="numberClicked('5')">
-                        <input type="button" class="btn" name="b6" value="6" onclick="numberClicked('6')">
-                        <input type="button" class="btn oper" name="-" value="-" onclick="oprClicked('-')">
-                    </div>
-                    <div class="row">
-                        <input type="button" class="btn" name="b1" value="1" onclick="numberClicked('1')">
-                        <input type="button" class="btn" name="b2" value="2" onclick="numberClicked('2')">
-                        <input type="button" class="btn" name="b3" value="3" onclick="numberClicked('3')">
-                        <input type="button" class="btn oper" name="*" value="*" onclick="oprClicked('*')">
-                    </div>
-                    <div class="row">
-                        <input type="button" class="btn" name="clear" value="C" onclick="clearH()">
-                        <input type="button" class="btn" name="b0" value="0" onclick="numberClicked('0')">
-                        <input type="button" class="btn oper" name="/" value="/" onclick="oprClicked('/')">
-                        <input type="button" class="btn red" name="=" value="=" onclick="equalClickes()">
-                    </div>
+
+                <!-- Number and Basic Operations Rows -->
+                <div class="row" aria-label="Number Pad and Operations">
+                    <input type="button" class="btn" value="7" onclick="numberClicked('7')" aria-label="7">
+                    <input type="button" class="btn" value="8" onclick="numberClicked('8')" aria-label="8">
+                    <input type="button" class="btn" value="9" onclick="numberClicked('9')" aria-label="9">
+                    <input type="button" class="btn oper" value="+" onclick="oprClicked('+')" aria-label="Add">
                 </div>
-            </form>
+                <div class="row">
+                    <input type="button" class="btn" value="4" onclick="numberClicked('4')" aria-label="4">
+                    <input type="button" class="btn" value="5" onclick="numberClicked('5')" aria-label="5">
+                    <input type="button" class="btn" value="6" onclick="numberClicked('6')" aria-label="6">
+                    <input type="button" class="btn oper" value="-" onclick="oprClicked('-')" aria-label="Subtract">
+                </div>
+                <div class="row">
+                    <input type="button" class="btn" value="1" onclick="numberClicked('1')" aria-label="1">
+                    <input type="button" class="btn" value="2" onclick="numberClicked('2')" aria-label="2">
+                    <input type="button" class="btn" value="3" onclick="numberClicked('3')" aria-label="3">
+                    <input type="button" class="btn oper" value="*" onclick="oprClicked('*')" aria-label="Multiply">
+                </div>
+                <div class="row">
+                    <input type="button" class="btn" value="C" onclick="clearH()" aria-label="Clear">
+                    <input type="button" class="btn" value="0" onclick="numberClicked('0')" aria-label="0">
+                    <input type="button" class="btn oper" value="/" onclick="oprClicked('/')" aria-label="Divide">
+                    <input type="button" class="btn red" value="=" onclick="equalClickes()" aria-label="Equals">
+                </div>
+            </div>
+        </form>
     </div>
 
-  <script src="main.js"></script>
+    <!-- JavaScript -->
+    <script src="main.js"></script>
 </body>
 </html>
