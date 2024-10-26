@@ -1,107 +1,103 @@
 const DarkMode = document.getElementById("dark-mode");
-const buttons1 = document.getElementsByClassName("btn");
+const buttons = document.querySelectorAll(".btn");
+const container = document.querySelector(".container");
+const darkModeClass = "dark";
+const resultDisplay = document.getElementById("result");
 
-DarkMode.onchange = darkmodechange;
-
-loopThrowDOMS(buttons1, function(element) {
+DarkMode.addEventListener("change", (event) => {
+    const isDarkMode = event.target.value === "dark";
     
+    // Toggle dark mode class on container
+    container.classList.toggle(darkModeClass, isDarkMode);
+
+    // Toggle dark mode on buttons
+    buttons.forEach((button) => {
+        button.classList.toggle(darkModeClass, isDarkMode);
+    });
 });
 
-function darkmodechange(event){
-    const thisElementValue = event.target.value;
-    const darkModeClass = "dark";
+let num1;
+let opr;
+let clear = false;
 
-    loopThrowDOMS(buttons1,function(element){
-        if(thisElementValue=="light" && element.classList.contains(darkModeClass)){
-            element.classList.remove(darkModeClass);
-        }
-        else if (thisElementValue=="dark" && !element.classList.contains(darkModeClass)){
-            element.classList.add(darkModeClass);
-        }
-    });
-
-    if(thisElementValue=="light" && calcu.classList.contains(darkModeClass)){
-        calcu.classList.remove(darkModeClass);
-    }
-    else if(thisElementValue == "dark" && calcu.classList.contains(darkModeClass)){
-        calcu.classList.add(darkModeClass);
-    }
-}
-var num1;
-var opr;
-function numberClicked(number){
-    var result = document.getElementById("result");
-
-    if (clear == true) {
-        num1=result.value;
-        result.value = "";
+function numberClicked(number) {
+    if (clear) {
+        num1 = resultDisplay.value;
+        resultDisplay.value = "";
         clear = false;
     }
-    result.value = result.value + number;
+    resultDisplay.value += number;
 }
 
-var clear = false;
-
-function oprClicked(oper){
+function oprClicked(operator) {
     clear = true;
-    opr=oper;
+    opr = operator;
 }
 
-function equalClickes(){
-    var result = document.getElementById("result");
-    var num2=result.value;
+function equalClickes() {
+    const num2 = Number(resultDisplay.value);
 
-    switch(opr){
+    switch (opr) {
         case "+":
-          result.value =   parseInt(num1) + parseInt(num2);
-          break;
-
+            resultDisplay.value = Number(num1) + num2;
+            break;
         case "-":
-          result.value =   parseInt(num1) - parseInt(num2);
-          break;
-
+            resultDisplay.value = Number(num1) - num2;
+            break;
         case "*":
-          result.value =   parseInt(num1) * parseInt(num2);
-          break;
-
+            resultDisplay.value = Number(num1) * num2;
+            break;
         case "/":
-          result.value =   parseInt(num1) / parseInt(num2);
-          break;
-
+            resultDisplay.value = num2 === 0 ? "Error" : Number(num1) / num2;
+            break;
         case "root":
-            result.value = Math.sqrt(num2);
+            resultDisplay.value = num2 < 0 ? "NaN" : Math.sqrt(num2);
             break;
         case "tan":
-            result.value = Math.tan(num2);    
+            resultDisplay.value = Math.tan(num2);
             break;
-         case "cos":
-             result.value = Math.cos(num2);    
-             break;
-         case "sin":
-           result.value = Math.sin(num2);    
-             break;
+        case "cos":
+            resultDisplay.value = Math.cos(num2);
+            break;
+        case "sin":
+            resultDisplay.value = Math.sin(num2);
+            break;
+        default:
+            resultDisplay.value = "Invalid";
+            break;
     }
 }
 
-function clearH(){
-    var result = document.getElementById("result");
-    result.value="";
+function clearH() {
+    resultDisplay.value = "";
     clear = false;
-    num1="";
-    num2="";
-
+    num1 = "";
 }
 
-
-
-
-
-
-
-
-
-
-function loopThrowDOMS(doms, funcHandler) {
-    const tmpDOMS = Array.from(doms);
-    tmpDOMS.forEach(funcHandler);
+function handleKeyPress(event) {
+    const key = event.key;
+    if (/[0-9]/.test(key)) {
+        numberClicked(key);
+    } else if (["+", "-", "*", "/"].includes(key)) {
+        oprClicked(key);
+    } else if (key === "Enter" || key === "=") {
+        equalClickes();
+    } else if (key === "c" || key === "C") {
+        clearH();
+    } else if (key === "r") {
+        oprClicked("root");
+        equalClickes();
+    } else if (key === "s") {
+        oprClicked("sin");
+        equalClickes();
+    } else if (key === "t") {
+        oprClicked("tan");
+        equalClickes();
+    } else if (key === "o") {
+        oprClicked("cos");
+        equalClickes();
+    }
 }
+
+// Listen for keyboard events
+document.addEventListener("keydown", handleKeyPress);
